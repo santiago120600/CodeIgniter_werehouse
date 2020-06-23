@@ -45,4 +45,25 @@ class DAO extends CI_Model {
             );
         }
     }
+
+    function saveOrUpdateEntity($entityName,$data,$whereClause = array()){
+        //validar que el arreglo contenga info
+        if ($whereClause) {
+            $this->db->update($entityName,$data);
+        }else{
+            $this->db->insert($entityName,$data);
+        }
+        if ($this->db->error()['message'] != '') {
+            return array(
+                "status" => "error",
+                "message" => $this->db->error()['message']
+            );
+        }else{
+            return array(
+                "status" => "success",
+                "message" => $whereClause ? 'Datos Actualizados correctamente' : 'Datos Regisrado correctamente'
+            );
+        }
+
+    }
 }

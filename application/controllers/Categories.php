@@ -7,6 +7,7 @@ class Categories extends MY_RootController {
 	{
         parent::__construct();
         $this->__validateSession();
+        $this->load->model('DAO');
     }
 
     public function index()
@@ -26,12 +27,18 @@ class Categories extends MY_RootController {
 
     public function saveOrUpdate(){
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('name_category','Nombre','required[min_length[3]|max_length[50]');
+        $this->form_validation->set_rules('name_category','Nombre','required|min_length[3]|max_length[50]');
         if ($this->form_validation->run()) {
-            echo "registrado";
+            $data = array(
+                "name_category" => $this->input->post('name_category'),
+                "desc_category" => $this->input->post('desc_category')
+            );
+            $data_response = $this->DAO->saveOrUpdateEntity('categories',$data);
+            echo json_encode($data_response);
         }
         else{
             $data['errors'] = $this->form_validation->error_array();
+            $data['current_data'] = $this->input->post();
             echo $this->load->view('categories/categories_form',$data,TRUE);
         }
     }
