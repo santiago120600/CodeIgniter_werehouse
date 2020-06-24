@@ -16,13 +16,22 @@ class Categories extends MY_RootController {
             $data_menu['categories_selected'] = true;
             $this->load->view('includes/menu',$data_menu);
             $this->load->view('includes/navbar');
-            $this->load->view('categories/categories_page');
+
+            $data_container['container_data'] = $this->DAO->selectEntity('categories');
+            $data_main['container_data'] = $this->load->view('categories/categories_data_page',$data_container,TRUE);
+            $this->load->view('categories/categories_page',$data_main);
             $this->load->view('includes/footer_nav');
             $this->load->view('includes/footer_l');
             $this->load->view('categories/categories_js');
     }
     public function showCategoriesForm(){
         echo $this->load->view('categories/categories_form',null,TRUE);
+    }
+
+    public function showDataContainer()
+    {        
+        $data_container['container_data'] = $this->DAO->selectEntity('categories');
+        echo $this->load->view('categories/categories_data_page',$data_container,TRUE);
     }
 
     public function saveOrUpdate(){
@@ -39,9 +48,13 @@ class Categories extends MY_RootController {
         else{
             $data['errors'] = $this->form_validation->error_array();
             $data['current_data'] = $this->input->post();
-            echo $this->load->view('categories/categories_form',$data,TRUE);
+            $data_response = array(
+                "status" => "warning",
+                "message" => "Información incorrecta, valida los campos!",
+                "data" =>  $this->load->view('categories/categories_form',$data,TRUE)
+            );
+            echo json_encode($data_response);
         }
     }
-
 
 }

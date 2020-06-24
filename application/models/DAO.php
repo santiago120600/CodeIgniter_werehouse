@@ -61,9 +61,21 @@ class DAO extends CI_Model {
         }else{
             return array(
                 "status" => "success",
-                "message" => $whereClause ? 'Datos Actualizados correctamente' : 'Datos Regisrado correctamente'
+                "message" => $whereClause ? 'Datos Actualizados correctamente' : 'Datos Registrados correctamente'
             );
         }
 
+    }
+
+    function selectEntity($entityName,$whereClause= array(),$isUnique = FALSE){
+        if($whereClause){
+            $this->db->where($whereClause);
+        }
+        $query = $this->db->get($entityName);
+        if($this->db->error()['message'] != ''){
+            return $isUnique ? null : array();
+        }else{
+            return $isUnique ? $query->row(): $query->result();
+        }
     }
 }
