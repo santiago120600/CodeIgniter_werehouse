@@ -49,6 +49,7 @@ class DAO extends CI_Model {
     function saveOrUpdateEntity($entityName,$data,$whereClause = array()){
         //validar que el arreglo contenga info
         if ($whereClause) {
+            $this->db->where($whereClause);
             $this->db->update($entityName,$data);
         }else{
             $this->db->insert($entityName,$data);

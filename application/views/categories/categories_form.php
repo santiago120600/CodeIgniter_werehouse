@@ -18,11 +18,10 @@
     <input type="hidden" name="form_action" value="<?=$action;?>">
     <?php if ($action!='new') {
         ?>
-            <input type="hidden" name="id_category" id="" value="<?=@$current_data['id_category'];?>">
+            <input type="hidden" name="id_category" value="<?=@$current_data['id_category'];?>">
         <?php
     }
     ?>
-
     <div class="modal-body">
         <div class="row">
             <div class="col-12">
