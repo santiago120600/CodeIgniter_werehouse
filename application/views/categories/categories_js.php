@@ -28,9 +28,30 @@
                     $(document).find('#modalContent').empty().append(convert_response.data);
                     }
                 }
-            })
+            });
 
         });
+
+        $(document).on('click','.custom-action',function(){
+
+            var _data = {
+                "key":$(this).attr('data-key').substring(4),
+                "action":$(this).attr('data-opt')
+            };
+            $.ajax({
+                'url':'<?=base_url('categories/showCategoriesForm');?>',
+                'method':'get',
+                'data':_data,
+                'success':function(response){
+                    $('#modalView').modal('show');
+
+                    setTimeout(function(){
+                        $(document).find('#modalContent').empty().append(response);
+                    },100);
+                }
+            });
+        });
+
     });
 
     function load_data(){

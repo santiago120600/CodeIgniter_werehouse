@@ -25,7 +25,12 @@ class Categories extends MY_RootController {
             $this->load->view('categories/categories_js');
     }
     public function showCategoriesForm(){
-        echo $this->load->view('categories/categories_form',null,TRUE);
+        $data_view['action']=$this->input->get('action') ? $this->input->get('action') : 'new';
+        if ($this->input->get('key')) {
+            $data  = $this->DAO->selectEntity('categories',array('id_category'=>$this->input->get('key')),TRUE);
+            $data_view['current_data'] = (array) $data;
+        }
+            echo $this->load->view('categories/categories_form',$data_view,TRUE);
     }
 
     public function showDataContainer()
@@ -46,6 +51,7 @@ class Categories extends MY_RootController {
             echo json_encode($data_response);
         }
         else{
+            $data['action'] = $this->input->post('form_action');
             $data['errors'] = $this->form_validation->error_array();
             $data['current_data'] = $this->input->post();
             $data_response = array(
