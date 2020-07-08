@@ -17,5 +17,6 @@
 
   <!-- Custom styles for this template-->
   <link href="<?=base_url('resources/css/sb-admin-2.min.css');?>" rel="stylesheet">
+  <link href="<?=base_url('resources/dropify/dist/css/dropify.css');?>" rel="stylesheet">
 
 </head>

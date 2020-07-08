@@ -7,5 +7,7 @@
 
   <!-- Custom scripts for all pages-->
   <script src="<?=base_url('resources/js/sb-admin-2.min.js');?>"></script>
+  
+  <script src="<?=base_url('resources/dropify/dist/js/dropify.js');?>"></script>
 
 </html>

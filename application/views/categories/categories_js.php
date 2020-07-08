@@ -8,11 +8,14 @@
                 }
             })
         });
+        
         $(document).on('submit','#form_categories',function(e){
             e.preventDefault();
             $.ajax({
                 'url' : '<?=base_url('categories/saveOrUpdate');?>',
-                'data' : $(this).serialize(),
+                'data' : new FormData(this),
+                'contentType':false,
+                'processData':false,
                 'method' : "post",
                 'success' : function(response){
                     var convert_response = JSON.parse(response);

@@ -18,11 +18,26 @@
     <input type="hidden" name="form_action" value="<?=$action;?>">
     <?php if ($action!='new') {
         ?>
-            <input type="hidden" name="id_category" value="<?=@$current_data['id_category'];?>">
-        <?php
+    <input type="hidden" name="id_category" value="<?=@$current_data['id_category'];?>">
+    <?php
     }
     ?>
     <div class="modal-body">
+        <div class="row">
+            <div class="col-12">
+            <label for="pic_category">Foto:</label>
+                <input type="file" name='pic_category' class="dropify" data-default-file="<?=base_url('resources/img/placeholder.jpg');?>" data-allowed-file-extensions="png jpg" data-max-file-size='2M'/>
+            </div>
+            <?php
+                if (@$errors['pic_category']) {
+                    ?>
+                        <small class="form-text text-danger float-right">
+                            <?=$errors['pic_category'];?>
+                        </small>
+                    <?php
+                }
+            ?>
+        </div>
         <div class="row">
             <div class="col-12">
                 <div class="form-group">
@@ -48,3 +63,8 @@
         <button type="submit" class="btn btn-primary">Enviar</button>
     </div>
 </form>
+<script type="text/javascript">
+    $(function(){
+        $('.dropify').dropify();
+    });
+</script>

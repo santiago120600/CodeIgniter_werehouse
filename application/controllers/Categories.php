@@ -42,13 +42,35 @@ class Categories extends MY_RootController {
     public function saveOrUpdate(){
         $this->load->library('form_validation');
         $this->form_validation->set_rules('name_category','Nombre','required|min_length[3]|max_length[50]');
+        $this->form_validation->set_rules('pic_category','pic','callback_valid_pic');
         if ($this->form_validation->run()) {
             //lo va a hacer new y edit
             if ($this->input->post('form_action') != "delete") {
-                $data = array(
-                    "name_category" => $this->input->post('name_category'),
-                    "desc_category" => $this->input->post('desc_category')
-                );
+
+                $config['upload_path']          = './uploads/';
+                $config['allowed_types']        = 'jpg|png';
+                $config['max_size']             = 2048;
+                $config['file_name'] = time();
+                $this->load->library('upload',$config);
+
+                //Si no se sube
+                if ( ! $this->upload->do_upload('pic_category'))
+                {
+                    //imprimir errores
+                    echo $this->upload->display_errors();
+
+                }
+                //Si si se sube
+                else
+                {
+                    $data = array(
+                        "icon_category" => $this->upload->data()['file_name'],
+                        "name_category" => $this->input->post('name_category'),
+                        "desc_category" => $this->input->post('desc_category')
+                    );
+                   
+                }
+
             }else {
                 $data = array(
                     "status_category" => "Inactive"
@@ -73,6 +95,16 @@ class Categories extends MY_RootController {
                 "data" =>  $this->load->view('categories/categories_form',$data,TRUE)
             );
             echo json_encode($data_response);
+        }
+    }
+
+    function valid_pic($value){
+        if (empty($_FILES['pic_category']['name'])) {
+            $this->form_validation->set_message('valid_pic','The {field} is required');
+            return false;
+        }
+        else{
+            return true;
         }
     }
 
