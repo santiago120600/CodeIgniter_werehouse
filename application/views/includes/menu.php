@@ -5,6 +5,7 @@
       $menus = array(
         array("menu_text" => "Home","menu_uri" => "home", "menu_icon"=>"fas fa-home"),
         array("menu_text" => "Categor&iacute;as/Productos","menu_uri" => "categories", "menu_icon"=>"fas fa-list-ul",'active'=> @$categories_selected ? TRUE : FALSE ), 
+        array("menu_text" => "Productos","menu_uri" => "products", "menu_icon"=>"fas fa-shopping-basket",'active'=> @$products_selected ? TRUE : FALSE ), 
         array("menu_text" => "Inventario","menu_uri" => "home", "menu_icon"=>"fas fa-home"), 
         array("menu_text" => "Proveedores","menu_uri" => "home", "menu_icon"=>"fas fa-home"), 
         array("menu_text" => "Reportes","menu_uri" => "home", "menu_icon"=>"fas fa-home"), 
@@ -14,14 +15,14 @@
     break;
     case 'Salesman':
       $menus = array(
-        array("menu_text" => "Home","menu_uri" => "home"),
-        array("menu_text" => "Punto de venta","menu_uri" => "home"),
-        array("menu_text" => "Catalogos","menu_uri" => "home"), 
-        array("menu_text" => "Inventario","menu_uri" => "home"), 
-        array("menu_text" => "Proveedores","menu_uri" => "home"), 
-        array("menu_text" => "Reportes","menu_uri" => "home"), 
-        array("menu_text" => "Usuarios","menu_uri" => "home"), 
-        array("menu_text" => "Clientes","menu_uri" => "home")
+        array("menu_text" => "Home","menu_uri" => "home", "menu_icon"=>"fas fa-home"),
+        array("menu_text" => "Punto de venta","menu_uri" => "home", "menu_icon"=>"fas fa-home"),
+        array("menu_text" => "Catalogos","menu_uri" => "home", "menu_icon"=>"fas fa-home"), 
+        array("menu_text" => "Inventario","menu_uri" => "home", "menu_icon"=>"fas fa-home"), 
+        array("menu_text" => "Proveedores","menu_uri" => "home", "menu_icon"=>"fas fa-home"), 
+        array("menu_text" => "Reportes","menu_uri" => "home", "menu_icon"=>"fas fa-home"), 
+        array("menu_text" => "Usuarios","menu_uri" => "home", "menu_icon"=>"fas fa-home"), 
+        array("menu_text" => "Clientes","menu_uri" => "home", "menu_icon"=>"fas fa-home")
       );
     break;
   }
