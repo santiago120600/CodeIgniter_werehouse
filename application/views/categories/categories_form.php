@@ -25,20 +25,20 @@
     <div class="modal-body">
         <div class="row">
             <div class="col-12">
-            <label for="pic_category">Foto:</label>
-            <?php if (empty(@$current_data['id_category'])) {
-                ?>
-                <input type="file" name='pic_category' class="dropify" data-default-file="<?=base_url('resources/img/placeholder.jpg');?>" data-allowed-file-extensions="png jpg" data-max-file-size='2M'/>
-                <?php
-                if (@$errors['pic_category']) {
+                <label for="pic_category">Foto:</label>
+                <?php if (empty(@$current_data['id_category'])) {
                     ?>
-                        <small class="form-text text-danger float-right">
-                            <?=$errors['pic_category'];?>
-                        </small>
-                    <?php } ?>
-                <?php } else { ?>
-                    <img src="<?=base_url('uploads/'.$current_data['icon_category']);?>" class="card-img-top" alt="...">
-                    <?php } ?>
+                    <input type="file" name='pic_category' class="dropify" data-default-file="<?=base_url('resources/img/placeholder.jpg');?>" data-allowed-file-extensions="png jpg" data-max-file-size='2M'/>
+                    <?php
+                    if (@$errors['pic_category']) {
+                        ?>
+                            <small class="form-text text-danger float-right">
+                                <?=$errors['pic_category'];?>
+                            </small>
+                        <?php } ?>
+                    <?php } else { ?>
+                        <img src="<?=base_url('uploads/'.$current_data['icon_category']);?>" class="card-img-top" alt="...">
+                        <?php } ?>
             </div>
         </div>
         <div class="row">

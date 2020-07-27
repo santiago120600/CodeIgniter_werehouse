@@ -17,9 +17,9 @@
             </div>
             <div class="card-footer">
                 <a href="<?=base_url('products/initial/'.$category->id_category);?>" class="btn  btn-sm btn-info  mr-1 custom-action"><i class="fas fa-shopping-basket"></i></a>
-                <button type="button" class="btn btn-sm btn-danger mr-1  custom-action"
+                <button type="button" class="btn btn-sm btn-danger  custom-action"
                     data-key="key_<?=$category->id_category;?>" data-opt="delete"><i class="fas fa-trash"></i></button>
-                <button type="button" class="btn  btn-sm btn-success mr-1 custom-action"
+                <button type="button" class="btn  btn-sm btn-success custom-action"
                     data-key="key_<?=$category->id_category;?>" data-opt="update"><i class="fas fa-edit"></i></button>
             </div>
         </div>

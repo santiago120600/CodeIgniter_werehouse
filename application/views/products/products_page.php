@@ -1,5 +1,5 @@
 <div class="container-fluid">
-    <h1 class="h3 mb-4 text-gray-800">Productos</h1>
+    <h1 class="h3 mb-4 text-gray-800">Productos <?=@$category_selected ? ': <strong>Categor&iacute;a '.$category_selected->name_category.'</strong>' : '';?></h1>
     <div class="row">
         <div class="col-12">
             <div class="card">

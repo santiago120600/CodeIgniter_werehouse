@@ -134,7 +134,17 @@ class Products extends MY_RootController {
             $data_response = $this->DAO->saveOrUpdateEntity('producto',$data,$where_clause);
             echo json_encode($data_response);
         }
-        else{
+        else{   
+
+            //Para que siga apareciendo la categoria si los datos en el formulario fueron incorrectos
+            if ($this->input->post('category')) {
+                $data['category_exists'] = $this->DAO->selectEntity('categories',array('id_category'=>$this->input->get('category_id')),TRUE);
+            }else {
+                //traer todas las categorias si no viene id
+                $data['category_list'] = $this->DAO->selectEntity('categories');
+            }
+
+
             $data['action'] = $this->input->post('form_action');
             $data['errors'] = $this->form_validation->error_array();
             $data['current_data'] = $this->input->post();
